@@ -14,13 +14,9 @@ public class Edu_141A {
             ArrayList<Integer> ls = new ArrayList<>();
             for (int i = 0; i < n; i++) ls.add(in.nextInt());
             Collections.sort(ls);
-            ArrayDeque<Integer> dq = new ArrayDeque<>();
-            for (int i: ls) dq.addLast(i);
             int[] ans = new int[n];
-            for (int i = 0; i < n; i++) {
-                if (i % 2 == 0) ans[i] = dq.pollLast();
-                else ans[i]  = dq.pollFirst();
-            }
+            Collections.reverse(ls);
+            for (int i = 0; i < n; i++) ans[i] = ls.get(i);
             boolean ok = true;
             for (int i = 1; i < n; i++) {
                 if (ans[i - 1] == ans[i]) {
@@ -28,6 +24,7 @@ public class Edu_141A {
                     break;
                 }
             }
+            debug(ans);
             if (ok) {
                 pw.println("Yes");
                 for (int i: ans) pw.print(i + " ");
