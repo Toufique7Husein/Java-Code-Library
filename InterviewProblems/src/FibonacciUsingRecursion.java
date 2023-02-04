@@ -3,22 +3,20 @@
 import java.io.*;
 import java.util.*;
 
-public class TypeDBForces2023_A {
+public class FibonacciUsingRecursion {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
+        //0 1 1 2 3 5 8 13
+        //0 1 2 3 4 5 6 7
+        debug(fib(10));
 
-        int t = in.nextInt();
-        for (int tt = 0; tt < t; tt++) {
-            long n = in.nextLong();
-            if (n % 2 != 0) {
-                pw.println(-1);
-            } else {
-                long y = n / 2;
-                pw.println(1 + " " + y);
-            }
-        }
         pw.close();
+    }
+
+    static int fib(int n) {
+        if (n == 0 || n == 1) return n;
+        return fib(n - 1) + fib(n - 2);
     }
 
     static void debug(Object... obj) {

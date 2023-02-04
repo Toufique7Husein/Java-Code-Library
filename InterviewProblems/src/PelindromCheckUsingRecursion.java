@@ -3,22 +3,19 @@
 import java.io.*;
 import java.util.*;
 
-public class TypeDBForces2023_A {
+public class PelindromCheckUsingRecursion {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
-
-        int t = in.nextInt();
-        for (int tt = 0; tt < t; tt++) {
-            long n = in.nextLong();
-            if (n % 2 != 0) {
-                pw.println(-1);
-            } else {
-                long y = n / 2;
-                pw.println(1 + " " + y);
-            }
-        }
+        debug(isPalindrome("aabab".toCharArray(), 0, 4));
         pw.close();
+    }
+
+    static boolean isPalindrome(char[] c, int s, int e) {
+        if (s == e) return true;
+        if (c[s] != c[e]) return false;
+        if (s < e + 1)isPalindrome(c, s + 1, e - 1);
+        return true;
     }
 
     static void debug(Object... obj) {
