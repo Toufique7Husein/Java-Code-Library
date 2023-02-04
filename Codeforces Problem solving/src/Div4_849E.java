@@ -1,9 +1,9 @@
-//created by Toufique on 27/01/2023
+//created by Toufique on 03/02/2023
 
 import java.io.*;
 import java.util.*;
 
-public class Div3_147E {
+public class Div4_849E {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
@@ -20,19 +20,24 @@ public class Div3_147E {
     }
 
     static long solve(long[] a, int n) {
-        int numOfNeg = 0;
         long sum = 0;
-        long min = Long.MAX_VALUE;
-        for (int i = 0; i < n; i++) {
-            if (a[i] < 0) numOfNeg++;
-            sum += Math.abs(a[i]);
-            min = Math.min(Math.abs(a[i]), min);
+        for (long x: a) sum += x;
+        ArrayList<Long> ls = new ArrayList<>();
+        for (int i = 1; i < n; i++) {
+            long v = a[i - 1], v2 = a[i];
+
+            if (v < 0) sum += (-1L) * v;
+            else sum -= v;
+            if (v2 < 0) sum += (-1L) * v2;
+            else sum -= v2;
+
+            long vv = v * (-1L);
+            long vv2 = v2 * (-1L);
+            ls.add((sum + vv + vv2));
+            sum += v;
+            sum += v2;
         }
-        debug(sum);
-        if(numOfNeg % 2 != 0) {
-            sum -= 2 * min;
-        }
-        return sum;
+        return Collections.max(ls);
     }
 
     static void debug(Object... obj) {

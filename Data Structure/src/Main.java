@@ -14,7 +14,20 @@ public class Main {
         ls.addLast(5);
         ls.addLast(6);
         ls.addLast(90);
-        ls.print();
+
+        DublyLinkedList ls1 = new DublyLinkedList();
+        ls1.addFirst(1);
+        ls1.addFirst(2);
+        ls1.addFirst(3);
+        ls1.addFirst(4);
+        ls1.addFirst(5);
+        ls1.addFirst(6);
+        ls1.addFirst(90);
+
+        ls1.print();
+        ls1.printRevers();
+
+
     }
 
     static void debug(Object...obj) {
