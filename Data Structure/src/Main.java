@@ -5,29 +5,21 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //1->2->3->4->5->6->90
-        SinglyLinkedList ls = new SinglyLinkedList();
-        ls.addLast(1);
-        ls.addLast(2);
-        ls.addLast(3);
-        ls.addLast(4);
-        ls.addLast(5);
-        ls.addLast(6);
-        ls.addLast(90);
+        PrintWriter pw = new PrintWriter(System.out);
+        SLL sll = new SLL();
+        sll.addFirst(1);
+        sll.addFirst(2);
+        sll.addLast(12);
+        sll.addLast(123);
+        sll.addLast(133);
+        sll.addLast(163);
 
-        DublyLinkedList ls1 = new DublyLinkedList();
-        ls1.addFirst(1);
-        ls1.addFirst(2);
-        ls1.addFirst(3);
-        ls1.addFirst(4);
-        ls1.addFirst(5);
-        ls1.addFirst(6);
-        ls1.addFirst(90);
-
-        ls1.print();
-        ls1.printRevers();
-
-
+        sll.print();
+        sll.add(2, 10000);
+        sll.print();
+        pw.println(sll.delete(2));
+        sll.print();
+        pw.close();
     }
 
     static void debug(Object...obj) {
