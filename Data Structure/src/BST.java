@@ -4,49 +4,71 @@ import java.io.*;
 import java.util.*;
 
 public class BST {
-    public Node root = null;
+    Node root;
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        PrintWriter pw = new PrintWriter(System.out);
+    BST() {
+        this.root = null;
+    }
 
-        int t = in.nextInt();
-        for (int tt = 0; tt < t; tt++) {
+    public void add(int key) {
+        root = add(key, root);
+    }
 
+    public Node add(int key, Node root) {
+        if (root == null) {
+            root = new Node(key);
+            return root;
         }
-
-        pw.close();
+        if (root.key > key) {
+            return root.left = add(key, root.left);
+        }
+        if (root.key < key) {
+            return  root.right = add(key, root.right);
+        }
+        return root;
     }
 
-    public Node add(Node n, int k, int val) {
-        if (root == null) return (new Node(k, val));
-        if (n.key < k) {
-            n.left = add(n.left, k, val);
-        } else if (n.key > k) {
-            n.right = add(n.right, k, val);
-        } else n.val = val;
-        return n;
+    public void preOrder() {
+        preOrder(root);
+    }
+    public void preOrder(Node root) {
+        if (root == null) return;
+        System.out.println(root.key);
+        preOrder(root.left);
+        preOrder(root.right);
     }
 
-    public void add(int k) {
-        root = add(root, k, k);
+    public void inOrder() {
+        inOrder(root);
     }
 
-    public void add(int k, int n) {
-        root = add(root, k, n);
+    public void inOrder(Node root) {
+        if (root == null) return;
+        preOrder(root.left);
+        preOrder(root.right);
     }
-    static class Node {
-        Integer key, val;
+
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    public void postOrder(Node root) {
+        if (root == null) return;
+        preOrder(root.left);
+        preOrder(root.right);
+        System.out.println(root.key);
+    }
+
+    static class Node{
+        int key;
         Node left, right;
-        Node(Integer key, Integer val) {
-            this.key = key;
-            this.val = val;
-        }
-
         Node(int key) {
             this.key = key;
+            this.left = null;
+            this.right = null;
         }
     }
+
 
     static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
