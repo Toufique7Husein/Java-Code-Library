@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         PrintWriter pw = new PrintWriter(System.out);
 
+        debug(  6200 + 256+ 200 + 800 + 400);
+
         /*
         *                    12
         *                  /     \
