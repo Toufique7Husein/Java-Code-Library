@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Data Structure/Algorithm.iml" filepath="$PROJECT_DIR$/Data Structure/Algorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/Algorithm-_-/Algorithm-_-.iml" filepath="$PROJECT_DIR$/Algorithm-_-/Algorithm-_-.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codeforces Problem solving/Codeforces Problem solving.iml" filepath="$PROJECT_DIR$/Codeforces Problem solving/Codeforces Problem solving.iml" />
       <module fileurl="file://$PROJECT_DIR$/InterviewProblems/CommonProblemsPractice.iml" filepath="$PROJECT_DIR$/InterviewProblems/CommonProblemsPractice.iml" />
       <module fileurl="file://$PROJECT_DIR$/Data Structure/Data Structure.iml" filepath="$PROJECT_DIR$/Data Structure/Data Structure.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Java-Code-Library.iml" filepath="$PROJECT_DIR$/.idea/Java-Code-Library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LeetCode/LeetCode.iml" filepath="$PROJECT_DIR$/LeetCode/LeetCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/Number Theory/Number Theory.iml" filepath="$PROJECT_DIR$/Number Theory/Number Theory.iml" />
       <module fileurl="file://$PROJECT_DIR$/Reccursion/Reccursion.iml" filepath="$PROJECT_DIR$/Reccursion/Reccursion.iml" />
       <module fileurl="file://$PROJECT_DIR$/Templates/Templates.iml" filepath="$PROJECT_DIR$/Templates/Templates.iml" />

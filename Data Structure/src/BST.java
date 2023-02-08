@@ -20,10 +20,10 @@ public class BST {
             return root;
         }
         if (root.key > key) {
-            return root.left = add(key, root.left);
+            root.left = add(key, root.left);
         }
         if (root.key < key) {
-            return  root.right = add(key, root.right);
+            root.right = add(key, root.right);
         }
         return root;
     }
@@ -44,8 +44,9 @@ public class BST {
 
     public void inOrder(Node root) {
         if (root == null) return;
-        preOrder(root.left);
-        preOrder(root.right);
+        inOrder(root.left);
+        System.out.println(root.key);
+        inOrder(root.right);
     }
 
     public void postOrder() {
