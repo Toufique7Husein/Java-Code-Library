@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Algorithm-_-/Algorithm-_-.iml" filepath="$PROJECT_DIR$/Algorithm-_-/Algorithm-_-.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Codeforces Contest/Codeforces Contest.iml" filepath="$PROJECT_DIR$/Codeforces Contest/Codeforces Contest.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codeforces Problem solving/Codeforces Problem solving.iml" filepath="$PROJECT_DIR$/Codeforces Problem solving/Codeforces Problem solving.iml" />
       <module fileurl="file://$PROJECT_DIR$/InterviewProblems/CommonProblemsPractice.iml" filepath="$PROJECT_DIR$/InterviewProblems/CommonProblemsPractice.iml" />
       <module fileurl="file://$PROJECT_DIR$/Data Structure/Data Structure.iml" filepath="$PROJECT_DIR$/Data Structure/Data Structure.iml" />
