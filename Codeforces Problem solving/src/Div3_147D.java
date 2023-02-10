@@ -31,7 +31,7 @@ public class Div3_147D {
 
     static int solve(ArrayList<Integer> ls, HashMap<Integer, Integer> map, int n) {
         int ans = 0;
-        debug(ls);
+     //   debug(ls);
         for (int i = 0; i < n; i++) {
             int v = ls.get(i);
             if (map.containsKey(v)) {
@@ -40,9 +40,7 @@ public class Div3_147D {
                 cnt--;
                 if (cnt == 0) {
                     map.remove(v);
-                    continue;
-                }
-                map.put(v, cnt);
+                }else map.put(v, cnt);
                 for (int j = v + 1; ; j++) {
                     if (!map.containsKey(j)) break;
                     int ocr = map.get(j);
@@ -50,6 +48,7 @@ public class Div3_147D {
                     if (ocr <= 0)map.remove(j);
                     else map.put(j, ocr);
                 }
+              //  debug(map, ans);
             }
         }
         return ans;

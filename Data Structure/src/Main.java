@@ -7,6 +7,15 @@ public class Main {
     public static void main(String[] args) {
         PrintWriter pw = new PrintWriter(System.out);
 
+        CirculerLinkedList cls = new CirculerLinkedList();
+        cls.add(12);
+        cls.add(23);
+        cls.add(2233);
+        cls.add(0);
+        cls.add(3);
+        cls.add(1);
+
+        cls.print();
 
         pw.close();
     }
