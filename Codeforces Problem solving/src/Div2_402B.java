@@ -7,11 +7,9 @@ public class Div2_402B {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
-
         char[] s = in.next().toCharArray();
         int k = in.nextInt();
         pw.println(solve(s, k));
-
         pw.close();
     }
 
