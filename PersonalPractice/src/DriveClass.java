@@ -8,19 +8,25 @@ public class DriveClass {
         Scanner in = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
 
-        SLL sll = new SLL();
-        sll.addFirst(12);
-        sll.addFirst(11);
-        sll.addFirst(23);
+        /*
+        *               0
+        *             /   \
+        *            2     3
+        *          /   \ /   \
+        *        4     5 6    7
+        *
+        * */
+        BST2 bst = new BST2();
+        bst.add(45);
+        bst.add(10);
+        bst.add(7);
+        bst.add(12);
+        bst.add(90);
+        bst.add(50);
 
-        sll.addLast(100);
-        sll.addLast(121);
-        sll.addAfter(100, -10);
-        sll.addAfter(23, -1990);
+        bst.preOrder();
 
-        sll.addAtPoint(4, 0);
-        sll.removeAtPoint(4);
-        sll.print();
+        System.out.println(bst.search(-7));
 
         pw.close();
     }

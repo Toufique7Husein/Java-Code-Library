@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class SLL {
+
     private Node head, tail;
     SLL() {
         this.tail = null;
@@ -85,7 +86,7 @@ public class SLL {
         if (temp == null) return;
         temp = head;
         Node prevLast = null;
-        while (temp.next != null) {
+        while (temp != tail) {
             prevLast = temp;
             temp = temp.next;
         }
@@ -111,6 +112,23 @@ public class SLL {
         prev.next = prev.next.next;
     }
 
+    public void delete(int val) {
+        Node temp = head;
+        if (temp.data == val) {
+            removeFirst();
+        }
+        Node prev = null;
+        while (temp != null && temp.data != val) {
+            prev = temp;
+            temp = temp.next;
+        }
+        if (temp == tail) {
+            removeLast();
+            return;
+        }
+        prev.next = temp.next;
+    }
+
 
     private class Node{
         int data;
@@ -120,8 +138,6 @@ public class SLL {
             this.next = null;
         }
     }
-
-
 
     static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
