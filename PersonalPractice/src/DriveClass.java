@@ -28,19 +28,16 @@ public class DriveClass {
 
         System.out.println(bst.search(-7));*/
 
-        DLL dll = new DLL();
-        dll.addFirst(1);
-        dll.addFirst(2);
-        dll.addFirst(3);
-        dll.addFirst(4);
-        dll.addFirst(5);
+       DLL3 dll = new DLL3();
+       dll.addFirst(1);
+       dll.addFirst(2);
+       dll.addFirst(34);
+       dll.addFirst(12);
+       dll.addFirst(45);
+       dll.addFirst(12);
 
 
-        dll.addAt(1, -1000);
-
-        dll.deleteFirst();
-        dll.deleteFirst();
-        dll.print();
+       dll.print();
 
 
 
