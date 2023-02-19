@@ -28,7 +28,7 @@ public class DriveClass {
 
         System.out.println(bst.search(-7));*/
 
-       DLL3 dll = new DLL3();
+       /*DLL3 dll = new DLL3();
        dll.addFirst(1);
        dll.addFirst(2);
        dll.addFirst(34);
@@ -38,9 +38,22 @@ public class DriveClass {
 
 
        dll.print();
+*/
 
+        SLL4 sll = new SLL4();
+        sll.addLast(1);
+        sll.addLast(2);
+        sll.addLast(3);
+        sll.addLast(4);
+        sll.addLast(5);
+        sll.addLast(6);
+        sll.addLast(7);
+        sll.addLast(8);
+        sll.addLast(9);
 
+        sll.addAt(1, 100);
 
+        sll.print();
 
         pw.close();
     }
