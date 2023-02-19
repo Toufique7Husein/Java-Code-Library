@@ -39,21 +39,23 @@ public class DriveClass {
 
        dll.print();
 */
+        DLLT dllt = new DLLT();
+        dllt.addFirst(1);
+        dllt.addFirst(2);
+        dllt.addFirst(3);
+        dllt.addFirst(4);
+        dllt.addFirst(5);
+        dllt.addFirst(6);
 
-        SLL4 sll = new SLL4();
-        sll.addLast(1);
-        sll.addLast(2);
-        sll.addLast(3);
-        sll.addLast(4);
-        sll.addLast(5);
-        sll.addLast(6);
-        sll.addLast(7);
-        sll.addLast(8);
-        sll.addLast(9);
+        dllt.addLast(1000000);
+        dllt.addLast(-1000);
 
-        sll.addAt(1, 100);
+        dllt.addAt(1, 90);
 
-        sll.print();
+       // dllt.deleteAt(6);
+
+        dllt.print();
+
 
         pw.close();
     }
