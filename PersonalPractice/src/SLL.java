@@ -1,18 +1,27 @@
-//created by Toufique on 14/02/2023
+//created by Toufique on 21/02/2023
 
 import java.io.*;
 import java.util.*;
 
 public class SLL {
+    private class Node{
+        int data;
+        Node next;
 
-    private Node head, tail;
-    SLL() {
-        this.tail = null;
-        this.head = null;
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
     }
 
-    public void addFirst(int val) {
-        Node node = new Node(val);
+    private Node head, tail;
+    public SLL() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    public void addFirst(int data) {
+        Node node = new Node(data);
         if (head == null) {
             head = node;
             tail = node;
@@ -21,50 +30,58 @@ public class SLL {
         node.next = head;
         head = node;
     }
-
-    public void addLast(int val) {
-        Node node = new Node(val);
-        if (tail == null) {
-            addFirst(val);
+    public void addLast(int data) {
+        Node node = new Node(data);
+        if (head == null) {
+            addFirst(data);
             return;
         }
         tail.next = node;
-        tail = node;
+        node = tail;
     }
 
-    public void addAfter(int after, int val) {
-        Node temp = head;
-        while (temp != null && temp.data != after) {
-            temp = temp.next;
-        }
-        if (temp == null) {
+    public void addAt(int idx, int data) {
+        Node node = new Node(data);
+        if (idx == 0) {
+            addFirst(data);
             return;
         }
-        Node node = new Node(val);
-        Node next = temp.next;
-        temp.next = node;
-        node.next = next;
-    }
+        int cnt = 0;
+        Node curr = head;
+        Node prev = null;
 
-    public void addAtPoint(int pos, int val) {
-        if (pos == 0) {
-            addFirst(val);
-        }
-        int currInd = 0;
-        Node prev = head;
-        Node currNode = head;
-        while (currNode != null) {
-            if (currInd == (pos - 1)) {
-                prev = currNode;
+        while (curr != null){
+            if ((cnt + 1) == idx) {
+                prev = curr;
                 break;
             }
-            currNode = currNode.next;
-            currInd++;
+            cnt++;
+            curr = curr.next;
         }
-        if (prev == null) return;
-        Node node = new Node(val);
         node.next = prev.next;
         prev.next = node;
+    }
+
+    public void deleteFirst() {
+        if (head == null) return;
+        head = head.next;
+    }
+
+    public void deleteAt(int idx) {
+        Node curr = head;
+        if (idx == 0) {
+            deleteFirst();
+            return;
+        }
+        int cnt = 0;
+        while (curr != null) {
+            if ((cnt + 1) == idx) {
+                break;
+            }
+            curr = curr.next;
+            cnt++;
+        }
+        curr.next = curr.next.next;
     }
 
     public void print() {
@@ -72,70 +89,6 @@ public class SLL {
         while (temp != null) {
             debug(temp.data);
             temp = temp.next;
-        }
-    }
-
-    public void removeFirst() {
-        Node temp = head;
-        if (temp == null) return;
-        head = temp.next;
-    }
-
-    public void removeLast() {
-        Node temp = tail;
-        if (temp == null) return;
-        temp = head;
-        Node prevLast = null;
-        while (temp != tail) {
-            prevLast = temp;
-            temp = temp.next;
-        }
-        prevLast.next = null;
-        tail = prevLast;
-    }
-
-    public void removeAtPoint(int v) {
-        if (v == 0) {
-            removeFirst();
-        }
-        Node temp = head;
-        int curr = 0;
-        Node prev = null;
-        while (temp != null) {
-            if (curr == (v - 1)) {
-                prev = temp;
-                break;
-            }
-            temp = temp.next;
-            curr++;
-        }
-        prev.next = prev.next.next;
-    }
-
-    public void delete(int val) {
-        Node temp = head;
-        if (temp.data == val) {
-            removeFirst();
-        }
-        Node prev = null;
-        while (temp != null && temp.data != val) {
-            prev = temp;
-            temp = temp.next;
-        }
-        if (temp == tail) {
-            removeLast();
-            return;
-        }
-        prev.next = temp.next;
-    }
-
-
-    private class Node{
-        int data;
-        Node next;
-        Node(int data) {
-            this.data = data;
-            this.next = null;
         }
     }
 
