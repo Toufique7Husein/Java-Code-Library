@@ -7,30 +7,25 @@ public class Main {
     public static void main(String[] args) {
         PrintWriter pw = new PrintWriter(System.out);
 
-       /* CirculerLinkedList cls = new CirculerLinkedList();
-        cls.add(12);
-        cls.add(23);
-        cls.add(2233);
-        cls.add(0);
-        cls.add(3);
-        cls.add(1);
+        int[] a = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
-        cls.print();*/
-
-        debug(Count(1234));
-
+        /*
+         *               1
+         *            /    \
+         *           2      3
+         *         /  \      \
+         *        4    5      6
+         * */
+        BinaryTree bt = new BinaryTree();
+        bt.buildTree(a, a.length);
+      //  bt.preOrder();
+        //bt.inOrder();
+       // bt.postOrder();
+       // bt.levelOrder();
+        //debug(bt.countNode());
+      //  debug(bt.sumOfNode());
+        debug(bt.Height());
         pw.close();
-    }
-
-
-    static int Count(int n) {
-        int cnt = 0;
-        for (;;) {
-            if (n == 0) break;
-            n = n / 10;
-            cnt++;
-        }
-        return cnt;
     }
 
     static void debug(Object...obj) {
