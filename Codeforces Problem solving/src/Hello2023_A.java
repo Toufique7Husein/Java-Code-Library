@@ -12,7 +12,7 @@ public class Hello2023_A {
             int n = in.nextInt();
             char[] s = in.next().toCharArray();
             int ans = -1;
-            for(int i = 0;i<n-1;i++){
+            for(int i = 0; i < n - 1;i++){
                 if(s[i] == 'L' && s[i+1] == 'R'){
                     ans = i+1;
                     break;
