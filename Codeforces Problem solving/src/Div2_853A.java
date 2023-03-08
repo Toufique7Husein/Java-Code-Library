@@ -24,7 +24,6 @@ public class Div2_853A {
             if (ok) pw.println("Yes");
             else pw.println("No");
         }
-
         pw.close();
     }
 
