@@ -4,22 +4,11 @@ import java.io.*;
 import java.util.*;
 
 public class SLL {
-    private class Node{
-        int data;
-        Node next;
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-
     private Node head, tail;
-    public SLL() {
+    SLL() {
         this.head = null;
         this.tail = null;
     }
-
     public void addFirst(int data) {
         Node node = new Node(data);
         if (head == null) {
@@ -30,6 +19,7 @@ public class SLL {
         node.next = head;
         head = node;
     }
+
     public void addLast(int data) {
         Node node = new Node(data);
         if (head == null) {
@@ -37,51 +27,7 @@ public class SLL {
             return;
         }
         tail.next = node;
-        node = tail;
-    }
-
-    public void addAt(int idx, int data) {
-        Node node = new Node(data);
-        if (idx == 0) {
-            addFirst(data);
-            return;
-        }
-        int cnt = 0;
-        Node curr = head;
-        Node prev = null;
-
-        while (curr != null){
-            if ((cnt + 1) == idx) {
-                prev = curr;
-                break;
-            }
-            cnt++;
-            curr = curr.next;
-        }
-        node.next = prev.next;
-        prev.next = node;
-    }
-
-    public void deleteFirst() {
-        if (head == null) return;
-        head = head.next;
-    }
-
-    public void deleteAt(int idx) {
-        Node curr = head;
-        if (idx == 0) {
-            deleteFirst();
-            return;
-        }
-        int cnt = 0;
-        while (curr != null) {
-            if ((cnt + 1) == idx) {
-                break;
-            }
-            curr = curr.next;
-            cnt++;
-        }
-        curr.next = curr.next.next;
+        tail = node;
     }
 
     public void print() {
@@ -92,6 +38,73 @@ public class SLL {
         }
     }
 
+    public void addAt(int at, int data) {
+        if (at == 0) {
+            addLast(data);
+            return;
+        }
+        Node prev = head;
+        int cnt = 0;
+        while (prev != null) {
+            if ((cnt == at - 1)) {
+                break;
+            }
+            cnt++;
+            prev = prev.next;
+        }
+        debug(cnt, at, prev);
+        Node node = new Node(data);
+        node.next = prev.next;
+        prev.next = node;
+    }
+
+    public void deleteFirst() {
+        if (head == null) return;
+        head = head.next;
+    }
+    public void deleteLast() {
+        Node temp = head;
+        Node prev = head;
+        while (temp != null) {
+            if (temp != tail) {
+                prev = temp;
+            }
+            temp = temp.next;
+        }
+        prev.next = prev;
+        tail = prev;
+        tail.next = null;
+    }
+
+    public void deleteAt(int at) {
+        Node temp = head;
+        if (at == 0) return;
+        int cnt = 0;
+        while (temp != null) {
+            if (at - 1 == cnt) break;
+            cnt++;
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+    }
+
+
+
+
+
+
+
+
+
+    private class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
     static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
     }
