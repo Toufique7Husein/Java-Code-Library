@@ -3,10 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Algorithm-_-/Algorithm-_-.iml" filepath="$PROJECT_DIR$/Algorithm-_-/Algorithm-_-.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AtCoder Beginner Contest/AtCoder Beginner Contest.iml" filepath="$PROJECT_DIR$/AtCoder Beginner Contest/AtCoder Beginner Contest.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codeforces Contest/Codeforces Contest.iml" filepath="$PROJECT_DIR$/Codeforces Contest/Codeforces Contest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codeforces Problem solving/Codeforces Problem solving.iml" filepath="$PROJECT_DIR$/Codeforces Problem solving/Codeforces Problem solving.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeforcesPractice2/CodeforcesPractice2.iml" filepath="$PROJECT_DIR$/CodeforcesPractice2/CodeforcesPractice2.iml" />
       <module fileurl="file://$PROJECT_DIR$/InterviewProblems/CommonProblemsPractice.iml" filepath="$PROJECT_DIR$/InterviewProblems/CommonProblemsPractice.iml" />
       <module fileurl="file://$PROJECT_DIR$/Data Structure/Data Structure.iml" filepath="$PROJECT_DIR$/Data Structure/Data Structure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dp Practice/Dp Practice.iml" filepath="$PROJECT_DIR$/Dp Practice/Dp Practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeforcesPractice2/Dynamic Programming Practice.iml" filepath="$PROJECT_DIR$/CodeforcesPractice2/Dynamic Programming Practice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Java-Code-Library.iml" filepath="$PROJECT_DIR$/.idea/Java-Code-Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/LeetCode/LeetCode.iml" filepath="$PROJECT_DIR$/LeetCode/LeetCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/Number Theory/Number Theory.iml" filepath="$PROJECT_DIR$/Number Theory/Number Theory.iml" />

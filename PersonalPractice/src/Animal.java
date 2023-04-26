@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.*;
 
 public class Animal {
+
+    static {
+        System.out.println("Hello");
+    }
     public void eat() {
         System.out.println("Animal Eating");
     }
