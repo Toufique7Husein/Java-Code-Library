@@ -1,111 +1,108 @@
-//created by Toufique on 21/01/2023
+//created by Toufique on 17/06/2023
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.*;
 
-public class Main {
-    static int a, b;
-    static double dp[][];
-    static int[][] vis;
+public class NT_J {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        FastReader in = new FastReader(System.in);
         PrintWriter pw = new PrintWriter(System.out);
 
-        int t = in.nextInt();
+        BigInteger s = new BigInteger("999970");
+        debug(s.nextProbablePrime());
 
-        for (int tt = 0; tt < t; tt++) {
 
-            int n = in.nextInt();
-            vis = new int[35][35];
-            dp = new double[35][35];
-            for (int i = 0; i < 35; i++) {
-                for (int j = 0; j < 35; j++) vis[i][j] = -1;
+        Prime p = new Prime(1000);
+        p.sieve();
+        int n = in.nextInt();
+        int[] a = new int[n];
+        boolean[] vis = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = in.nextInt();
+            p.pf(a[i]);
+        }
+
+        int cnt = -1;
+        int v = 0;
+        for (int i = 2; i <= (int)1e6; i++) {
+            if (p.cnt[i] > cnt) {
+                v = i;
+                cnt = p.cnt[i];
             }
-
-            a = in.nextInt();
-            b = in.nextInt();
-            pw.println(solve(n, 0));
         }
+        if (cnt == n) {
+            pw.println(0);
+            pw.println(v + " " + 3);
+            pw.close();
+            return;
+        }
+        for (int i = 0; i < n; i++) if (a[i] % v == 0) vis[i] = true;
+       // debug(vis[25]);
+        int[] second = new int[(int)1e6 + 1];
+        for (int i = 0; i < n; i++) {
+            if (vis[i]) continue;
+            for (int j: p.pf[a[i]]) second[j]++;
+        }
+        int cnt1 = -1;
+        int v2 = 0;
+        for (int i = 2; i <= (int)1e6; i++) {
+            if (second[i] > cnt1) {
+                v2 = i;
+                cnt1 = second[i];
+            }
+        }
+        int ans = n - cnt - second[v2];
+        pw.println(ans);
+        pw.println(v + " " + v2);
         pw.close();
-    }
-    
-   static double solve(int at, int sum) {
-        if (at == 0) return (sum == a || sum == b) ? 1.0 : 0.0;
-        double temp = dp[at][sum];
-        if (vis[at][sum] != -1) return temp;
-        vis[at][sum] = 1;
-        temp = (1D / 2D) * solve(at - 1, sum + 1);
-        temp += (1D / 2D) * solve(at - 1, sum);
-
-        return temp;
-    }
-
-
-
-
-    static class Pair implements Comparable<Pair>{
-        long a, cnt;
-        Pair(long a, long cnt) {
-            this.a = a;
-            this.cnt = cnt;
-        }
-
-
-        @Override
-        public int compareTo(Pair o) {
-            return Long.compare(this.a, o.a);
-        }
-
-        @Override
-        public String toString() {
-            return "Pair{" +
-                    "a=" + a +
-                    ", cnt=" + cnt +
-                    '}';
-        }
     }
 
     static class Prime {
+        int N;
+        HashSet<Integer>[] pf;
         ArrayList<Integer> prime;
         boolean[] isPrime;
-        int N = (int)1e3;
-        HashMap<Integer, Integer> map;
+        int[] cnt = new int[(int)1e6 + 1];
 
-        Prime() {
-            prime = new ArrayList<>();
+        Prime(int N) {
+            this.N = N;
             isPrime = new boolean[N + 1];
-            map = new HashMap<>();
-
-            Arrays.fill(isPrime, true);
-            isPrime[0] = isPrime[1] = false;
+            prime = new ArrayList<>();
+            pf = new HashSet[(int)(1e6) + 1];
+            for (int i = 1; i <= (int)1e6; i++) pf[i] = new HashSet<>();
         }
 
         void sieve() {
+            Arrays.fill(isPrime, true);
+            isPrime[0] = isPrime[1] = false;
+
             for (int i = 2; i * i <= N; i++) {
-                if (!isPrime[i])continue;
+                if (!isPrime[i]) continue;
                 for (int j = i * i; j <= N; j += i) isPrime[j] = false;
             }
-            for (int i = 2; i <= N; i++) if (isPrime[i])prime.add(i);
+
+            for (int i = 0; i <= N; i++) if (isPrime[i]) prime.add(i);
         }
 
         void pf(int n) {
-            HashSet<Integer> set = new HashSet<>();
+            int x = n;
             for (int i = 0; i < prime.size(); i++) {
                 int p = prime.get(i);
                 if (p * p > n) break;
                 if (n % p == 0) {
-                    while (n % p == 0) {
-                        n /= p;
-                        set.add(p);
-                    }
-                    map.put(p, map.getOrDefault(p, 0) + 1);
+                    pf[x].add(p);
+                    while (n % p == 0) n /= p;
                 }
             }
-            if (n > 1 && !set.contains(n)) map.put(n, map.getOrDefault(n, 0) + 1);
+            if (n > 1) pf[x].add(n);
+            for (int i: pf[x]) cnt[i]++;
         }
-
     }
 
+    static void debug(Object... obj) {
+        System.err.println(Arrays.deepToString(obj));
+    }
 
     static class FastReader {
         InputStream is;
@@ -220,9 +217,5 @@ public class Main {
         public char readChar() {
             return (char) skip();
         }
-    }
-
-    static void debug(Object...obj) {
-        System.err.println(Arrays.deepToString(obj));
     }
 }

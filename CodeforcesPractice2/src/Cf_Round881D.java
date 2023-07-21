@@ -1,112 +1,52 @@
-//created by Toufique on 21/01/2023
+//created by Toufique on 20/06/2023
 
 import java.io.*;
 import java.util.*;
 
-public class Main {
-    static int a, b;
-    static double dp[][];
-    static int[][] vis;
+public class Cf_Round881D {
+    static int[] leaf;
+    static boolean[] vis;
+    static ArrayList<Integer>[] adj;
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        FastReader in = new FastReader(System.in);
         PrintWriter pw = new PrintWriter(System.out);
 
         int t = in.nextInt();
-
         for (int tt = 0; tt < t; tt++) {
-
             int n = in.nextInt();
-            vis = new int[35][35];
-            dp = new double[35][35];
-            for (int i = 0; i < 35; i++) {
-                for (int j = 0; j < 35; j++) vis[i][j] = -1;
+            adj = new ArrayList[n + 1];
+            for (int i = 0; i <= n; i++) adj[i] = new ArrayList<>();
+            for (int i = 0; i < n - 1; i++) {
+                int u = in.nextInt(), v = in.nextInt();
+                adj[u].add(v);
+                adj[v].add(u);
             }
-
-            a = in.nextInt();
-            b = in.nextInt();
-            pw.println(solve(n, 0));
+            leaf = new int[n + 1];
+            for (int i = 1; i <= n; i++) if (adj[i].size() == 1 && i != 1) leaf[i]++;
+            vis = new boolean[n + 1];
+            dfs(1, -1);
+            int q = in.nextInt();
+            for (int i = 0; i < q; i++) {
+                int x = in.nextInt(), y = in.nextInt();
+                long ans = leaf[x] * 1L * leaf[y];
+                pw.println(ans);
+            }
         }
+
         pw.close();
     }
-    
-   static double solve(int at, int sum) {
-        if (at == 0) return (sum == a || sum == b) ? 1.0 : 0.0;
-        double temp = dp[at][sum];
-        if (vis[at][sum] != -1) return temp;
-        vis[at][sum] = 1;
-        temp = (1D / 2D) * solve(at - 1, sum + 1);
-        temp += (1D / 2D) * solve(at - 1, sum);
 
-        return temp;
-    }
-
-
-
-
-    static class Pair implements Comparable<Pair>{
-        long a, cnt;
-        Pair(long a, long cnt) {
-            this.a = a;
-            this.cnt = cnt;
+    static void dfs(int u, int p) {
+        vis[u] = true;
+        for (int v: adj[u]) {
+            if (vis[v]) continue;
+            vis[v] = true;
+            dfs(v, u);
         }
-
-
-        @Override
-        public int compareTo(Pair o) {
-            return Long.compare(this.a, o.a);
-        }
-
-        @Override
-        public String toString() {
-            return "Pair{" +
-                    "a=" + a +
-                    ", cnt=" + cnt +
-                    '}';
+        if (p != -1) {
+            leaf[p] += (leaf[u]);
         }
     }
-
-    static class Prime {
-        ArrayList<Integer> prime;
-        boolean[] isPrime;
-        int N = (int)1e3;
-        HashMap<Integer, Integer> map;
-
-        Prime() {
-            prime = new ArrayList<>();
-            isPrime = new boolean[N + 1];
-            map = new HashMap<>();
-
-            Arrays.fill(isPrime, true);
-            isPrime[0] = isPrime[1] = false;
-        }
-
-        void sieve() {
-            for (int i = 2; i * i <= N; i++) {
-                if (!isPrime[i])continue;
-                for (int j = i * i; j <= N; j += i) isPrime[j] = false;
-            }
-            for (int i = 2; i <= N; i++) if (isPrime[i])prime.add(i);
-        }
-
-        void pf(int n) {
-            HashSet<Integer> set = new HashSet<>();
-            for (int i = 0; i < prime.size(); i++) {
-                int p = prime.get(i);
-                if (p * p > n) break;
-                if (n % p == 0) {
-                    while (n % p == 0) {
-                        n /= p;
-                        set.add(p);
-                    }
-                    map.put(p, map.getOrDefault(p, 0) + 1);
-                }
-            }
-            if (n > 1 && !set.contains(n)) map.put(n, map.getOrDefault(n, 0) + 1);
-        }
-
-    }
-
-
     static class FastReader {
         InputStream is;
         private byte[] inbuf = new byte[1024];
@@ -222,7 +162,8 @@ public class Main {
         }
     }
 
-    static void debug(Object...obj) {
+
+    static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
     }
 }

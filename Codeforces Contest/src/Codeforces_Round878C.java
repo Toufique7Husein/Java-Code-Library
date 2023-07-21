@@ -1,111 +1,40 @@
-//created by Toufique on 21/01/2023
+//created by Toufique on 06/06/2023
 
 import java.io.*;
 import java.util.*;
 
-public class Main {
-    static int a, b;
-    static double dp[][];
-    static int[][] vis;
+public class Codeforces_Round878C {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        FastReader in = new FastReader(System.in);
         PrintWriter pw = new PrintWriter(System.out);
 
         int t = in.nextInt();
-
         for (int tt = 0; tt < t; tt++) {
-
-            int n = in.nextInt();
-            vis = new int[35][35];
-            dp = new double[35][35];
-            for (int i = 0; i < 35; i++) {
-                for (int j = 0; j < 35; j++) vis[i][j] = -1;
-            }
-
-            a = in.nextInt();
-            b = in.nextInt();
-            pw.println(solve(n, 0));
+            int n = in.nextInt(), k = in.nextInt(), q = in.nextInt();
+            long[] a = new long[n];
+            for (int i = 0; i < n; i++) a[i] = in.nextLong();
+            pw.println(solve(n, k, q, a));
         }
+
         pw.close();
     }
-    
-   static double solve(int at, int sum) {
-        if (at == 0) return (sum == a || sum == b) ? 1.0 : 0.0;
-        double temp = dp[at][sum];
-        if (vis[at][sum] != -1) return temp;
-        vis[at][sum] = 1;
-        temp = (1D / 2D) * solve(at - 1, sum + 1);
-        temp += (1D / 2D) * solve(at - 1, sum);
 
-        return temp;
-    }
-
-
-
-
-    static class Pair implements Comparable<Pair>{
-        long a, cnt;
-        Pair(long a, long cnt) {
-            this.a = a;
-            this.cnt = cnt;
-        }
-
-
-        @Override
-        public int compareTo(Pair o) {
-            return Long.compare(this.a, o.a);
-        }
-
-        @Override
-        public String toString() {
-            return "Pair{" +
-                    "a=" + a +
-                    ", cnt=" + cnt +
-                    '}';
-        }
-    }
-
-    static class Prime {
-        ArrayList<Integer> prime;
-        boolean[] isPrime;
-        int N = (int)1e3;
-        HashMap<Integer, Integer> map;
-
-        Prime() {
-            prime = new ArrayList<>();
-            isPrime = new boolean[N + 1];
-            map = new HashMap<>();
-
-            Arrays.fill(isPrime, true);
-            isPrime[0] = isPrime[1] = false;
-        }
-
-        void sieve() {
-            for (int i = 2; i * i <= N; i++) {
-                if (!isPrime[i])continue;
-                for (int j = i * i; j <= N; j += i) isPrime[j] = false;
+    static long solve(int n, int k, int q, long[] a) {
+        long ans = 0;
+        for (int i = 0; i < n; ) {
+            long cnt = 0;
+            int j = i;
+            for (; j < n; j++) {
+                if (a[j] <= q) {
+                    cnt++;
+                } else break;
             }
-            for (int i = 2; i <= N; i++) if (isPrime[i])prime.add(i);
+            cnt -= (k - 1);
+            if (cnt > 0) ans += (cnt * (cnt + 1)) / 2;
+            i = j + 1;
         }
-
-        void pf(int n) {
-            HashSet<Integer> set = new HashSet<>();
-            for (int i = 0; i < prime.size(); i++) {
-                int p = prime.get(i);
-                if (p * p > n) break;
-                if (n % p == 0) {
-                    while (n % p == 0) {
-                        n /= p;
-                        set.add(p);
-                    }
-                    map.put(p, map.getOrDefault(p, 0) + 1);
-                }
-            }
-            if (n > 1 && !set.contains(n)) map.put(n, map.getOrDefault(n, 0) + 1);
-        }
-
+        return ans;
     }
-
 
     static class FastReader {
         InputStream is;
@@ -222,7 +151,7 @@ public class Main {
         }
     }
 
-    static void debug(Object...obj) {
+    static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
     }
 }
