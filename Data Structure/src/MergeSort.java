@@ -8,27 +8,63 @@ public class MergeSort {
         Scanner in = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
 
-        int t = in.nextInt();
-        for (int tt = 0; tt < t; tt++) {
-
-        }
+        int[] a = {1, 0, 9, -1, 90, 2, 3, 6};
+        mergeSort(a, a.length);
+        debug(a);
 
         pw.close();
     }
-
-    static void mergeSort(int l, int h) {
-        if (l == h) return;
-        int mid = l + (h - l) / 2;
-
-        mergeSort(l, mid);
-        mergeSort(l, mid + 1);
-
-        int i, j,k;
-        for (i = l, j = mid + 1, k = l; k <= h; k++) {
-
+    public static void mergeSort(int[] a, int n) {
+        if(n < 2) return;
+        int mid = n / 2;
+        int[] l = new int[mid];
+        int[] r = new int[n - mid];
+        for (int i = 0; i < mid; i++) {
+            l[i] = a[i];
         }
+        for (int i = mid; i < n; i++) {
+            r[i - mid] = a[i];
+        }
+        mergeSort(l, mid);
+        mergeSort(r, n - mid);
+        mergE(a, l, r, mid - 1, n - mid);
 
     }
+
+    static void merge(int[] a, int[] l, int[] r, int left, int right) {
+        int i = 0, j = 0, k = 0;
+        while (i < left && j < right) {
+            if (l[i] <= r[j]) {
+                a[k++] = l[i++];
+            }
+            else {
+                a[k++] = r[j++];
+            }
+        }
+        while (i < left) {
+            a[k++] = l[i++];
+        }
+        while (j < right) {
+            a[k++] = r[j++];
+        }
+    }
+
+
+
+    static void mergE(int[] a, int[] l, int[] r, int left, int right) {
+        int i = 0, j = 0, k = 0;
+        while (i < left && j < right) {
+            if (l[i] < r[j]) {
+                a[k++] = l[i++];
+            } else {
+                a[k++] = r[j++];
+            }
+        }
+        while (i < left) a[k++] = l[i++];
+        while (j < right) a[k++] = r[j++];
+    }
+
+
 
     static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
